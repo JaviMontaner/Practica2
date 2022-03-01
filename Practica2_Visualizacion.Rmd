@@ -37,8 +37,7 @@ knitr::opts_chunk$set(fig.width=8, fig.height=4)
 
 ```{r include=FALSE}
 # Especificamos las librerías necesarias en esta lista
-packages = c("tidyverse", "knitr", "ggplot2", "datasets", "RColorBrewer","usethis")
-use_git_config(user.name = "JaviMontaner", user.email = "javimontaner17@gmail.com")
+packages = c("tidyverse", "knitr", "ggplot2", "datasets", "RColorBrewer")
 # use this function to check if each package is on the local machine
 # if a package is installed, it will be loaded
 # if any are not, the missing package(s) will be installed and loaded
@@ -135,7 +134,21 @@ p2
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio1.pdf``.
 
 ```{r Solucion ejercicio 1}
+load("./data/weatherAUS.RData")
+grafico1 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp))
+grafico1
 
+
+g1<-grafico1+geom_point()
+g1
+
+grafico2 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp, colour=RainTomorrow))+geom_point()
+grafico2
+
+grafico3 <- grafico2+ggtitle("Gráfico de dispersión")
+grafico3
+
+ggsave("Figure/Ejercicio1.pdf")
 ```
 
 ### **Ejercicio 2**
@@ -147,7 +160,21 @@ p2
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio2.pdf``.
 
 ```{r Solucion ejercicio 2}
+load("./data/weatherAUS.RData")
 
+grafico1 <- ggplot(ds, aes(x = Temp9am, y = Pressure9am))+geom_point()
+grafico1
+
+grafico2 <- ggplot(ds, aes(x = Temp9am, y = Pressure9am, shape=RainToday))+geom_point()
+grafico2
+
+grafico3 <- ggplot(ds, aes(x = Temp9am, y = Pressure9am, colour=RainToday))+geom_point()
+grafico3
+
+grafico4 <- grafico3+geom_point()+ggtitle("Gráfico dispersión lluvia")
+grafico4
+
+ggsave("Figure/Ejercicio2.pdf")
 ```
 
 ### **Ejercicio 3**
