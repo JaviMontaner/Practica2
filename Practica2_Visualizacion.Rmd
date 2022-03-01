@@ -189,7 +189,35 @@ ggsave("Figure/Ejercicio2.pdf")
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio3.pdf``.
 
 ```{r Solucion ejercicio 3}
+load("./data/iris_tidy.RData")
+str(iris.tidy) #Contiene 4 variables, SpeciesPart,Measure,Value
 
+iris.grafico1 <- ggplot(iris.tidy, aes(x = Species, y = Value))
+iris.grafico1
+
+grafico2 <- iris.grafico1+geom_point()
+grafico2
+
+iris.grafico2 <- ggplot(iris.tidy, aes(x = Species, y = Value, color= Part))
+iris.grafico2
+
+iris.grafico3 <- ggplot(iris.tidy, aes(x = Species, y = Value, color= Part)) + geom_point()
+iris.grafico3
+
+iris.grafico4 <- ggplot(iris.tidy, aes(x = Species, y = Value))+geom_point() + facet_grid(Measure~.)
+iris.grafico4
+
+iris.grafico5 <- ggplot(iris.tidy, aes(x = Species, y = Value))+geom_point() + facet_grid(.~Measure)
+iris.grafico5
+
+#El gráfico por columnas es mucho más útil, debido a la disposición de la gráfica
+
+iris.grafico6 <- ggplot(iris.tidy, aes(x = Species, y = Value))+geom_jitter() + facet_grid(.~Measure)
+iris.grafico6
+
+#Este segundo gráfico tiene la información más dispersa, por tanto, se puede interpretar mejor la información
+
+ggsave("Figure/Ejercicio3.pdf")
 ```
 
 ## Gráficos de línea con **ggplot2**
